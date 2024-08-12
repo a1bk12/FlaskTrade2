@@ -1,20 +1,20 @@
-# Use an official Python runtime as a parent image
-FROM python:3.12-slim
+# Use the official Python image.
+FROM python:3.12
 
-# Set the working directory in the container
+# Set the working directory.
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy the requirements file into the container.
+COPY requirements.txt requirements.txt
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install any dependencies.
+RUN pip install -r requirements.txt
 
-# Ensure startup.sh is executable
-RUN chmod +x /app/startup.sh
+# Copy the rest of the application code.
+COPY . .
 
-# Expose port 80 (the default HTTP port)
+# Expose the port that the app runs on.
 EXPOSE 80
 
-# Command to run the application
-CMD ["/app/startup.sh"]
+# Define the command to run the application.
+CMD ["gunicorn", "-b", "0.0.0.0:80", "app:app"]
