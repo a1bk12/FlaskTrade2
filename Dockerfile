@@ -10,11 +10,14 @@ COPY . /app
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Make the startup script executable
+RUN chmod +x /app/startup.sh
+
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
 
 # Define environment variable
 ENV NAME World
 
-# Run the application
-CMD ["gunicorn", "--bind=0.0.0.0:8000", "--timeout", "600", "upstox1.app:app"]
+# Specify the startup script as the entry point
+ENTRYPOINT ["/app/startup.sh"]
