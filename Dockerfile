@@ -10,8 +10,11 @@ COPY . /app
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Ensure startup.sh is executable
+RUN chmod +x /app/startup.sh
+
 # Expose port 8000
 EXPOSE 8000
 
 # Command to run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
+CMD ["/app/startup.sh"]
