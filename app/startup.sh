@@ -2,5 +2,5 @@
 # Change to the application directory
 cd /app
 
-# Start Gunicorn
-exec gunicorn --bind 0.0.0.0:8000 app:app
+# Start Gunicorn on port 80
+exec gunicorn --bind 0.0.0.0:80 app:app

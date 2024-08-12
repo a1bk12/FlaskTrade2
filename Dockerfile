@@ -13,8 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Ensure startup.sh is executable
 RUN chmod +x /app/startup.sh
 
-# Expose port 8000
-EXPOSE 8000
+# Expose port 80 (the default HTTP port)
+EXPOSE 80
 
 # Command to run the application
 CMD ["/app/startup.sh"]

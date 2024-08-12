@@ -1,6 +1,6 @@
 #!/bin/sh
-# Ensure the working directory is set to /app
+# Change to the application directory
 cd /app
 
-# Run Gunicorn to start your application
-gunicorn --bind 0.0.0.0:8000 app:app
+# Start Gunicorn on port 80
+exec gunicorn --bind 0.0.0.0:80 app:app
