@@ -13,11 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Make the startup script executable
 RUN chmod +x /app/startup.sh
 
-# Make port 8000 available to the world outside this container
+# Expose port 8000
 EXPOSE 8000
 
-# Define environment variable
-ENV NAME World
-
-# Specify the startup script as the entry point
+# Define the entry point for the container
 ENTRYPOINT ["/app/startup.sh"]
